@@ -36,25 +36,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* ErgoDox keymap definition macro */
 #define KEYMAP(                                                 \
                                                                 \
-    /* left hand, spatial positions */                          \
-    k00,k01,k02,k03,k04,k05,k06,                                \
-    k10,k11,k12,k13,k14,k15,k16,                                \
-    k20,k21,k22,k23,k24,k25,                                    \
-    k30,k31,k32,k33,k34,k35,k36,                                \
-    k40,k41,k42,k43,k44,                                        \
-                            k55,k56,                            \
-                                k54,                            \
-                        k53,k52,k51,                            \
+    k0D,k0C,k0B,k0A,k09,k08,k07,                                \
+    k1D,k1C,k1B,k1A,k19,k18,k17,                                \
+    k2D,k2C,k2B,k2A,k29,k28,                                    \
+    k3D,k3C,k3B,k3A,k39,k38,k37,                                \
+    k4D,k4C,k4B,k4A,k49,                                        \
+                            k58,k57,                            \
+                                k59,                            \
+                        k5A,k5B,k5C,                            \
                                                                 \
-    /* right hand, spatial positions */                         \
-        k07,k08,k09,k0A,k0B,k0C,k0D,                            \
-        k17,k18,k19,k1A,k1B,k1C,k1D,                            \
-            k28,k29,k2A,k2B,k2C,k2D,                            \
-        k37,k38,k39,k3A,k3B,k3C,k3D,                            \
-                k49,k4A,k4B,k4C,k4D,                            \
-    k57,k58,                                                    \
-    k59,                                                        \
-    k5C,k5B,k5A )                                               \
+        k06,k05,k04,k03,k02,k01,k00,                            \
+        k16,k15,k14,k13,k12,k11,k10,                            \
+            k25,k24,k23,k22,k21,k20,                            \
+        k36,k35,k34,k33,k32,k31,k30,                            \
+                k44,k43,k42,k41,k40,                            \
+    k56,k55,                                                    \
+    k54,                                                        \
+    k51,k52,k53)                                                \
                                                                 \
    /* matrix positions */                                       \
    {                                                            \
