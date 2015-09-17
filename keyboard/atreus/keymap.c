@@ -21,11 +21,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdint.h>
 #include <stdbool.h>
 #include <avr/pgmspace.h>
+#include <util/delay.h>
 #include "keycode.h"
 #include "action.h"
+#include "action_util.h"
+#include "action_code.h"
 #include "action_macro.h"
+#include "action_layer.h"
+#include "bootloader.h"
 #include "report.h"
 #include "host.h"
+#include "print.h"
 #include "debug.h"
 #include "keymap.h"
 
@@ -44,10 +50,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* 0 */   { KC_##K0A, KC_##K0B, KC_##K0C, KC_##K0D, KC_##K0E, KC_##K0F, KC_##K0G, KC_##K0H, KC_##K0I, KC_##K0J, KC_##K0K }  \
 }
 
-#include "keymap_atreus.h"
-
 #define KEYMAPS_SIZE    (sizeof(keymaps) / sizeof(keymaps[0]))
 #define FN_ACTIONS_SIZE (sizeof(fn_actions) / sizeof(fn_actions[0]))
+
+enum function_id {
+	TEENSY_KEY,
+};
+
+#include "keymap_atreus.h"
+
+void action_function(keyrecord_t *event, uint8_t id, uint8_t opt)
+{
+	if (id == TEENSY_KEY) {
+		clear_keyboard();
+		print("\n\nJump to bootloader...");
+		_delay_ms(250);
+		bootloader_jump();
+		print("Should have jumped, guess not supported");
+	}
+}
 
 /* translates key to keycode */
 uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)

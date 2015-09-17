@@ -202,7 +202,7 @@ static void unselect_rows(void)
     DDRC  &= ~0b00001111;
     PORTC |= 0b00001111;
 
-
+}
 static void select_row(uint8_t row)
 { 
     // Output low(DDR:1, PORT:0) to select

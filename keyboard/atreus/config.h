@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VENDOR_ID       0x1337
 #define PRODUCT_ID      0xBEEF
 #define DEVICE_VER      0x9001
-#define MANUFACTURER    t.m.k
+#define MANUFACTURER    Lawlcifer
 #define PRODUCT         Atreus Keyboard
 
 /* message strings */

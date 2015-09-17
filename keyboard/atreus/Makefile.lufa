@@ -117,6 +117,7 @@ OPT_DEFS += -DBOOTLOADER_SIZE=512
 VPATH += $(TARGET_DIR)
 VPATH += $(TMK_DIR)
 
+include $(TMK_DIR)/protocol.mk
 include $(TMK_DIR)/protocol/lufa.mk
 include $(TMK_DIR)/common.mk
 include $(TMK_DIR)/rules.mk
