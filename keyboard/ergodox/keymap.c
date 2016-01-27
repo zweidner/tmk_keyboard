@@ -74,18 +74,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     { KC_##k0D,KC_##k1D,KC_##k2D,KC_##k3D,KC_##k4D,KC_NO   }    \
    }
 
-#if defined(KEYMAP_DVORAK)
-#include "keymap_dvorak.h"
-#elif defined(KEYMAP_COLEMAK)
-#include "keymap_colemak.h"
-#elif defined(KEYMAP_WORKMAN)
-#include "keymap_workman.h"
-#elif defined(KEYMAP_MICRO)
-#include "keymap_micro.h"
-#elif defined(KEYMAP_CUB)
-#include "keymap_cub.h"
-#else
-
 static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // layer 0 : default
         // left hand
@@ -275,8 +263,6 @@ void action_function(keyrecord_t *event, uint8_t id, uint8_t opt)
     }
 }
 
-#endif
-
 
 #define KEYMAPS_SIZE    (sizeof(keymaps) / sizeof(keymaps[0]))
 #define FN_ACTIONS_SIZE (sizeof(fn_actions) / sizeof(fn_actions[0]))
@@ -292,11 +278,6 @@ uint8_t keymap_key_to_keycode(uint8_t layer, keypos_t key)
     }
 }
 
-#if defined(KEYMAP_CUB)
-
-// function keymap_fn_to_action will be defined in keymap_cub.h
-
-#else
 /* translates Fn keycode to action */
 action_t keymap_fn_to_action(uint8_t keycode)
 {
@@ -308,5 +289,16 @@ action_t keymap_fn_to_action(uint8_t keycode)
     }
     return action;
 }
-#endif
 
+const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt) {
+    if (record->event.pressed) {
+        switch (id) {
+            case PASSWORD1:     return MACRO_PASSWORD1;
+            case PASSWORD2:     return MACRO_PASSWORD2;
+            case PASSWORD3:     return MACRO_PASSWORD3;
+            case PASSWORD4:     return MACRO_PASSWORD4;
+            case PASSWORD5:     return MACRO_PASSWORD5;
+        }
+    }
+    return MACRO_NONE;
+}
