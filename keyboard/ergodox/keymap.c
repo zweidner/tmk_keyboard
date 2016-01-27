@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "debug.h"
 #include "keymap.h"
 #include "ergodox.h"
+#include "keymap_passwords.h"
 
 
 /* ErgoDox keymap definition macro */
@@ -185,7 +186,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
              RBRC,J,   F,   U,   P,   SCLN,RBRC,
                   Y,   N,   E,   O,   I,   QUOT,
              FN1, K,   L,   COMM,DOT, SLSH,RSFT,
-                        FN3,RCTL,RALT, FN3,RGUI,
+                       FN3, FN5, RCTL,RALT,RGUI,
         RALT,RCTL,
         PGUP,
         PGDN,ENT,BSPC
@@ -203,7 +204,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  TRNS,TRNS,TRNS,
         // right hand
               F12,  F6,  F7,  F8,  F9, F10, FN0,
-             TRNS,   6,   7,   8,   9,   0,TRNS,  
+             TRNS,   6,   7,   8,   9,   0,TRNS,
                   RBRC,TRNS,QUOT,MINS, EQL,TRNS,
              TRNS,TRNS,TRNS,TRNS,TRNS,BSLS,TRNS,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -215,16 +216,16 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KEYMAP(  // layer 6 : keyboard functions
         // left hand
         FN0, TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,ACL0,ACL1,ACL2,TRNS,TRNS,
+        TRNS,TRNS,MS_L,MS_U,MS_R,BTN1,
+        TRNS,TRNS,WH_D,MS_D,WH_U,BTN2,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
                                            TRNS,
                                  TRNS,TRNS,TRNS,
         // right hand
              FN4, TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
-             TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+             TRNS,FN6, FN7, FN8, FN9, FN10,TRNS,
                   TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
                        TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -239,6 +240,13 @@ enum function_id {
     TEENSY_KEY,
 };
 
+enum macro_id {
+    PASSWORD1,
+    PASSWORD2,
+    PASSWORD3,
+    PASSWORD4,
+    PASSWORD5,
+};
 /*
  * Fn action definition
  */
@@ -248,6 +256,12 @@ static const uint16_t PROGMEM fn_actions[] = {
     ACTION_LAYER_SET(4, ON_PRESS),                  // FN2 - set Layer4
     ACTION_LAYER_MOMENTARY(5),                      // FN3 - switch to Layer5
     ACTION_LAYER_SET(0, ON_PRESS),                  // FN4 - set Layer0
+    ACTION_LAYER_MOMENTARY(6),                      // FN5 - switch to Layer6
+    ACTION_MACRO(PASSWORD1),                        // FN6 - password macro 1
+    ACTION_MACRO(PASSWORD2),                        // FN7 - password macro 2
+    ACTION_MACRO(PASSWORD3),                        // FN8 - password macro 3
+    ACTION_MACRO(PASSWORD4),                        // FN9 - password macro 4
+    ACTION_MACRO(PASSWORD5),                        // FN10 - password macro 5
 };
 
 void action_function(keyrecord_t *event, uint8_t id, uint8_t opt)
